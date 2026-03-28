@@ -7,7 +7,7 @@ namespace SmartHabitTracker.API.Models
     public class User
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public required int Id { get; set; }
+        public int? Id { get; set; }
         [MaxLength(45)]
         public required string Username { get; set; }
         [EmailAddress]

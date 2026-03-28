@@ -8,7 +8,7 @@ namespace SmartHabitTracker.API.Models
     public class Habit
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public required int Id { get; set; }
+        public int? Id { get; set; }
 
         [MaxLength(100)]
         public required string Name { get; set; }
