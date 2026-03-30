@@ -60,6 +60,8 @@ namespace SmartHabitTracker.API.Controllers
                 return BadRequest("Wrong password");
             }
 
+            string token = Jwt
+
             return Ok(new { message = "Login successfull" });
         }
 

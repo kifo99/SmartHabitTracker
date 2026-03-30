@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using SmartHabitTracker.API.Data;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,28 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<DatabaseContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddAuthentication()
+.AddJwtBearer("Bearer", jwtOptions =>
+{
+    var jwtConfig = builder.Configuration.GetSection("Jwt");
+    var key = jwtConfig["Key"] ?? throw new Exception("JWT key missing");
+    var issuer = jwtConfig["Issuer"] ?? throw new Exception("JWT issuer missing");
+    var audience = jwtConfig["Audience"] ?? throw new Exception("JWT audience missing");
+
+    jwtOptions.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateIssuerSigningKey = true,
+
+
+        ValidIssuer = issuer,
+        ValidAudience = audience, 
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
+    };
+});
+
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
