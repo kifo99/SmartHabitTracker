@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using SmartHabitTracker.API.DTOs;
 
 namespace SmartHabitTracker.API.Controllers
 {
@@ -22,6 +23,7 @@ namespace SmartHabitTracker.API.Controllers
             _configuration = configuration;
         }
 
+        // /api/Auth/signup/
         [HttpPost("signup")]
         public async Task<IActionResult> Signup([FromBody] SignupRequest request)
         {
@@ -53,6 +55,7 @@ namespace SmartHabitTracker.API.Controllers
             return Ok();
         }
 
+        // /api/Auth/signin
         [HttpPost("signin")]
         public async Task<IActionResult> Signin([FromBody] SigninRequest request)
         {

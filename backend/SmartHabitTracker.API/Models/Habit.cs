@@ -17,6 +17,7 @@ namespace SmartHabitTracker.API.Models
         public bool? IsCompleted { get; set; }
 
         public required int UserId { get; set; }
+        [ForeignKey("UserId")]
         public User? User { get; set; }
 
     }
