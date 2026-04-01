@@ -21,17 +21,17 @@ namespace SmartHabitTracker.API.Controllers
             _context = context;
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost("add/{userId}")]
-        public async Task<IActionResult> AddHabit(HabitRequest request, int userId) {
-            
+        public async Task<IActionResult> AddHabit(HabitRequest request, int userId)
+        {
+
             var user = await _context.Users.FindAsync(userId);
 
             if (user == null) { return BadRequest("User not found"); }
 
             var habitExists = await _context.Habits.FirstOrDefaultAsync(u => u.Name == request.Name);
-            
-            Console.WriteLine(habitExists);
+
 
             if (habitExists != null) { return BadRequest("Habit already exists"); }
 
@@ -47,9 +47,28 @@ namespace SmartHabitTracker.API.Controllers
             _context.SaveChanges();
 
 
-            return Ok(new {
-                message = "Habit added successfully" 
+            return Ok(new
+            {
+                message = "Habit added successfuly"
             });
         }
+
+        [Authorize]
+        [HttpPut("edit/{habitId}")]
+        public async Task<IActionResult> EditHabit(HabitRequest request, int habitId)
+        {
+            var habit = await _context.Habits.FindAsync(habitId);
+
+            if (habit == null) { return BadRequest("Habit was not found"); }
+
+            habit.Name = request.Name;
+            habit.IsCompleted = request.IsCompleted;
+
+            _context.Habits.Update(habit); _context.SaveChanges();
+
+            return Ok(new { message = "Habit is edited successfuly" });
+        }
+
+        
     }
 }

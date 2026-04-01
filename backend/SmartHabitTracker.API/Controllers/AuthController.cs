@@ -96,7 +96,7 @@ namespace SmartHabitTracker.API.Controllers
             {
                 token = new JwtSecurityTokenHandler().WriteToken(jwt),
                 expires = _tokenLifetime * 60,
-                message = "Login successfull"
+                message = "Login successful"
             });
 
         }
