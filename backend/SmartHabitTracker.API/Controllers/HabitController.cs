@@ -23,7 +23,7 @@ namespace SmartHabitTracker.API.Controllers
 
         [Authorize]
         [HttpPost("add/{userId}")]
-        public async Task<IActionResult> AddHabit(HabitRequest request, int userId)
+        public async Task<IActionResult> CreateHabit(HabitRequest request, int userId)
         {
 
             var user = await _context.Users.FindAsync(userId);
@@ -69,6 +69,18 @@ namespace SmartHabitTracker.API.Controllers
             return Ok(new { message = "Habit is edited successfuly" });
         }
 
-        
+        [Authorize]
+        [HttpDelete("delete/{habitId}")]
+        public async Task<IActionResult> DeleteHabit(int habitId)
+        {
+            var habit = await _context.Habits.FindAsync(habitId);
+
+            if (habit == null) { return BadRequest("Habit was not found"); }
+
+            _context.Habits.Remove(habit);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Habit deleted successfuly" });
+        }
     }
 }
