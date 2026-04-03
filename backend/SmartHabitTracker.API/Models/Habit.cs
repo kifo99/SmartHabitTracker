@@ -14,7 +14,7 @@ namespace SmartHabitTracker.API.Models
         public required string Name { get; set; }
         public required DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        public bool? IsCompleted { get; set; }
+        public bool? IsCompleted { get; set; } = false;
 
         public required int UserId { get; set; }
         [ForeignKey("UserId")]
