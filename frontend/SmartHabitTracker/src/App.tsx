@@ -1,5 +1,11 @@
-function App() {
-  return <div>Hello world</div>;
-}
+import { Outlet } from 'react-router';
+
+const App = () => {
+  return (
+    <>
+      <Outlet />
+    </>
+  );
+};
 
 export default App;
