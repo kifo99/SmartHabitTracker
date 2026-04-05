@@ -2,13 +2,15 @@ import { NavLink } from 'react-router';
 
 const Navigation = () => {
   return (
-    <nav className="bg-gray-300 w-full h-16 flex items-center px-6">
+    <nav className="bg-background-main text-2xl text-text-primary w-full h-26 flex items-center px-6">
       <div>
         <div>
           <NavLink
             to={'/'}
             className={({ isActive }) =>
-              isActive ? 'text-lg font-semibold' : 'text-lg'
+              isActive
+                ? 'font-extrabold hover:text-text-secondary'
+                : 'font-semibold hover:text-text-secondary'
             }
           >
             Home
@@ -16,11 +18,13 @@ const Navigation = () => {
         </div>
       </div>
       <div className="flex-1"></div>
-      <div className="flex gap-4">
+      <div className="flex gap-8">
         <NavLink
           to={'/Signin'}
           className={({ isActive }) =>
-            isActive ? 'text-lg font-semibold' : 'text-lg'
+            isActive
+              ? 'font-extrabold hover:text-text-secondary'
+              : 'font-semibold hover:text-text-secondary'
           }
         >
           Signin
@@ -28,7 +32,9 @@ const Navigation = () => {
         <NavLink
           to={'/Signup'}
           className={({ isActive }) =>
-            isActive ? 'text-lg font-semibold' : 'text-lg'
+            isActive
+              ? 'font-extrabold hover:text-text-secondary'
+              : 'font-semibold hover:text-text-secondary'
           }
         >
           Signup
