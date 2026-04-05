@@ -1,22 +1,38 @@
-import { Link } from 'react-router';
+import { NavLink } from 'react-router';
 
 const Navigation = () => {
   return (
     <nav className="bg-gray-300 w-full h-16 flex items-center px-6">
       <div>
-        <div>Hamburger menu</div>
+        <div>
+          <NavLink
+            to={'/'}
+            className={({ isActive }) =>
+              isActive ? 'text-lg font-semibold' : 'text-lg'
+            }
+          >
+            Home
+          </NavLink>
+        </div>
       </div>
       <div className="flex-1"></div>
       <div className="flex gap-4">
-        <Link to={'/'} className="text-lg font-semibold">
-          Home
-        </Link>
-        <Link to={'/Signin'} className="text-lg">
+        <NavLink
+          to={'/Signin'}
+          className={({ isActive }) =>
+            isActive ? 'text-lg font-semibold' : 'text-lg'
+          }
+        >
           Signin
-        </Link>
-        <Link to={'/Signup'} className="text-lg">
+        </NavLink>
+        <NavLink
+          to={'/Signup'}
+          className={({ isActive }) =>
+            isActive ? 'text-lg font-semibold' : 'text-lg'
+          }
+        >
           Signup
-        </Link>
+        </NavLink>
       </div>
     </nav>
   );
