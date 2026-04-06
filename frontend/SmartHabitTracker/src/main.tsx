@@ -4,6 +4,7 @@ import App from './App.tsx';
 import Home from './page/Home/Home.tsx';
 import { StrictMode } from 'react';
 import Signin from './page/Auth/Signin/Signin.tsx';
+import Signup from './page/Auth/Signup/Signup.tsx';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: '/signin',
         element: <Signin />,
+      },
+      {
+        path: '/signup',
+        element: <Signup />,
       },
     ],
   },

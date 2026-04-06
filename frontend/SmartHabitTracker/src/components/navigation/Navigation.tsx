@@ -17,7 +17,7 @@ const Navigation = () => {
           </NavLink>
         </div>
       </div>
-      <div className="flex-1"></div>
+      <div className="flex-1 border-"></div>
       <div className="flex gap-8">
         <NavLink
           to={'/Signin'}
